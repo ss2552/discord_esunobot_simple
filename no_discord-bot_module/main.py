@@ -16,6 +16,7 @@ async def heartbeat(websocket):
 
 async def receive(websocket):
     print("receive")
+    res = None
     async for message in websocket:
         data = json.loads(message)
         if data["op"] == 0:
@@ -41,13 +42,11 @@ async def receive(websocket):
                                 res = "今日も可愛い〜！"
                             case "ミオしゃ":
                                 res = "うちうち！うちだよ！大神ミオだよ〜！"
-                        continue
-                    else:
-                        continue
-                    requests.post("https://discord.com/api/v10/channels/" + data["d"]["channel_id"] + "/messages", 
-                                headers = {"authorization": TOKEN, "content-type": "application/json"},
-                                json = {"content": res}
-                            )
+                    if res:
+                        requests.post("https://discord.com/api/v10/channels/" + data["d"]["channel_id"] + "/messages", 
+                                    headers = {"authorization": TOKEN, "content-type": "application/json"},
+                                    json = {"content": res}
+                                )
 
 async def main():
     print("main")
