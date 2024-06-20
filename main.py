@@ -16,7 +16,7 @@ async def on_message(ctx):
             r = ctx.content.removeprefix('オウム返し')
             res = r if r else "えい！"
             
-        elif ctx.channel.id == env.CAHNNEL_ID:
+        elif ctx.channel.id == env.CHANNEL_ID:
             match ctx.content:
                 case "すいちゃんは〜？":
                     res = "今日も可愛い〜！"
