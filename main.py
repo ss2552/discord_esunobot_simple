@@ -8,17 +8,22 @@ async def on_message(ctx):
     if not ctx.author.bot:
         if ctx.content == "( ・∇・)":
             res = "( ・∇・)"
+            
+        elif "えい！" in ctx.content:
+            res = "えい！"
+            
         elif ctx.content.startswith("オウム返し"):
-            res = ctx.content.removeprefix('オウム返し')
-            if not res:
-                res = "えい！"
-        elif ctx.channel.id == env.CHANNEL_ID:
+            r = ctx.content.removeprefix('オウム返し')
+            res = r if r else "えい！"
+            
+        elif ctx.channel.id == env.CAHNNEL_ID:
             match ctx.content:
                 case "すいちゃんは〜？":
                     res = "今日も可愛い〜！"
                 case "ミオしゃ":
                     res = "うちうち！うちだよ！大神ミオだよ〜！"
-        elif "えい！" in ctx.content:
-            res = "えい！"
+            return
+        else:
+            return
         await ctx.channel.send(res)
 bot.run(env.TOKEN)
