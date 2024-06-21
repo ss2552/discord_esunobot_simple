@@ -6,24 +6,26 @@ bot = Client(intents = i)
 @bot.event
 async def on_message(ctx):
     if not ctx.author.bot:
-        if ctx.content == "( ・∇・)":
-            res = "( ・∇・)"
+        send = lambda c: ctx.channel.send(c)
+        if content == "( ・∇・)":
+            await send("( ・∇・)")
             
-        elif "えい！" in ctx.content:
-            res = "えい！"
+        elif "えい！" in content:
+            await send("えい！")
             
-        elif ctx.content.startswith("オウム返し"):
-            r = ctx.content.removeprefix('オウム返し')
-            res = r if r else "えい！"
-            
-        elif ctx.channel.id == env.CHANNEL_ID:
-            match ctx.content:
+        elif content.startswith("オウム返し"):
+            res = content.removeprefix('オウム返し')
+            if not res:
+                await send("えい！")
+            else:
+                await send(res)
+                
+        elif data["d"]["channel_id"] == "1241185004575522968":
+            match content:
                 case "すいちゃんは〜？":
-                    res = "今日も可愛い〜！"
+                    await send("今日も可愛い〜！")
                 case "ミオしゃ":
-                    res = "うちうち！うちだよ！大神ミオだよ〜！"
-            return
-        else:
-            return
-        await ctx.channel.send(res)
+                    await send("うちうち！うちだよ！大神ミオだよ〜！")
+                case _:
+                    await send(">>>"+content)
 bot.run(env.TOKEN)
