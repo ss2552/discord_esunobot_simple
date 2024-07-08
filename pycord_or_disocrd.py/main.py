@@ -20,12 +20,4 @@ async def on_message(ctx):
             else:
                 await send(res)
                 
-        elif data["d"]["channel_id"] == "1241185004575522968":
-            match content:
-                case "すいちゃんは〜？":
-                    await send("今日も可愛い〜！")
-                case "ミオしゃ":
-                    await send("うちうち！うちだよ！大神ミオだよ〜！")
-                case _:
-                    await send(">>>"+content)
 bot.run(env.TOKEN)
