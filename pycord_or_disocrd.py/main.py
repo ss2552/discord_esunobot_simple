@@ -1,4 +1,5 @@
 from discord import Client, Intents
+
 i = Intents.default()
 i.message_content = True
 bot = Client(intents = i)
