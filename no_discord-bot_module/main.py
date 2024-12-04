@@ -38,10 +38,10 @@ async def receive(websocket):
                         
                     elif data["d"]["channel_id"] == env.CHANNEL_ID:
                         match content:
-                            case "すいちゃんは〜？":
-                                res = "今日も可愛い〜！"
-                            case "ミオしゃ":
-                                res = "うちうち！うちだよ！大神ミオだよ〜！"
+                            case "あ":
+                                res = "あ"
+                            case "い":
+                                res = "い"
                     if res:
                         requests.post("https://discord.com/api/v10/channels/" + data["d"]["channel_id"] + "/messages", 
                                     headers = {"authorization": TOKEN, "content-type": "application/json"},
